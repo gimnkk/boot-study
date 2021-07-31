@@ -1,0 +1,33 @@
+spring:
+  config:
+    import:
+      - optional:file:/spring_boot/rest_api/API_Config/external_config.yml
+      - optional:file:C://boot-test/API_Config/external_config.yml
+  pid:
+    file: apiboot.pid
+  jpa:
+    hibernate:    
+      ddl-auto: create
+# create, update, create-drop, drop, none , validate
+    properties:
+      hibernate: 
+        format_sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+
+logging:
+    file:
+      path: ./API_Log
+    level:
+      org:
+        hibernate:
+          SQL: debug
+          type:
+            descriptor:
+              sql: trace
+      root: info
+
+

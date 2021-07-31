@@ -1,0 +1,18 @@
+package com.mino.api.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.mino.api.entity.ApiHistoryEntity;
+
+@Repository
+public interface ApiHistoryRepository
+		extends JpaRepository<ApiHistoryEntity, Long>, QuerydslPredicateExecutor<ApiHistoryEntity> {
+
+	Optional<ApiHistoryEntity> findByHistoryKey(@Param("historyKey") String historyKey);
+
+}
