@@ -2,7 +2,7 @@ spring:
   config:
     import:
       - optional:file:/spring_boot/rest_api/API_Config/external_config.yml
-      - optional:file:C://boot-test/API_Config/external_config.yml
+      - optional:file:C://Users/kmnkkk/eclipse-workspace/API_Config/external_config.yml
   pid:
     file: apiboot.pid
   jpa:
