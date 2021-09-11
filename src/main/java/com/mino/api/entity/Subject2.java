@@ -1,37 +1,33 @@
 package com.mino.api.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//다대일 단방향
+//다대다 양방향
 @Entity
-@Data
 @NoArgsConstructor
-public class Child1 {
+@Data
+public class Subject2 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "parent_id")
-	
-	private Parent1 parent;
-	
-	@Builder
-	public Child1 (String name, Parent1 parent) {
-		this.name = name;
-		this.parent = parent;
-	}
+	@ManyToMany
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+	private List<Subject2> subject = new ArrayList<Subject2>();
 }

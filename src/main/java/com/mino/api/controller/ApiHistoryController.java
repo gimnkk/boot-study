@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mino.api.dto.CommonResponseDto;
+import com.mino.api.dto.TestHistoryDto;
 import com.mino.api.entity.ApiHistoryEntity;
+import com.mino.api.repository.support.ApiHistoryRepositorySupport;
 import com.mino.api.service.ApiHistoryService;
 
 import io.swagger.annotations.Api;
@@ -32,6 +34,8 @@ public class ApiHistoryController {
 
 	@Autowired
 	private ApiHistoryService apiHistoryService;
+	@Autowired
+	private ApiHistoryRepositorySupport apiHistoryRepoSupport;
 
 	@ApiOperation(value = "히스토리 생성", notes = "히스토리 내역을 기록한다.")
 	@PostMapping("/create")
@@ -64,6 +68,17 @@ public class ApiHistoryController {
 		logger.info(historyKeyParam);
 		apiHistoryService.deleteHistory(historyKeyParam);
 		return new ResponseEntity<>(new CommonResponseDto("S00", "성공하였습니다."), HttpStatus.OK);
+	}
+	
+	/*
+	 * @GetMapping("/test") public ResponseEntity<TestHistoryDto> test(@PathVariable
+	 * Long seq) { apiHistoryRepoSupport.findOneBySeq(seq).get(); return new
+	 * ResponseEntity<>(new CommonResponseDto("S00", "성공하였습니다."), HttpStatus.OK); }
+	 */
+	
+	@GetMapping("/test/{seq}")
+	public TestHistoryDto test(@PathVariable Long seq) {
+		return apiHistoryRepoSupport.findOneBySeq(seq).get();
 	}
 
 }

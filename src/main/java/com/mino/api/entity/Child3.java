@@ -8,16 +8,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//다대일 단방향
+//다대일 양방향
 @Entity
 @Data
 @NoArgsConstructor
-public class Child1 {
+public class Child3 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,11 +27,11 @@ public class Child1 {
 	
 	@ManyToOne
 	@JoinColumn(name = "parent_id")
-	
-	private Parent1 parent;
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+	private Parent3 parent;
 	
 	@Builder
-	public Child1 (String name, Parent1 parent) {
+	public Child3 (String name, Parent3 parent) {
 		this.name = name;
 		this.parent = parent;
 	}

@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,7 @@ public class Host2 {
 	//OneToOne은 일대일 로 보는것.
 	@OneToOne
 	@JoinColumn(name = "target_id")
+//	@JsonIdentityInfo(generator = ObjectIdGenerator.IntSequence/)
 	private Target2 target;
 	
 	@Builder
